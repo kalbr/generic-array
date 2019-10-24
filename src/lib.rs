@@ -38,6 +38,7 @@
 
 #![deny(missing_docs)]
 #![no_std]
+#![cfg_attr(feature="nightly", feature(specialization, never_type))]
 
 #[cfg(feature = "serde")]
 extern crate serde;
@@ -75,6 +76,11 @@ use self::sequence::*;
 pub unsafe trait ArrayLength<T>: Unsigned {
     /// Associated type representing the array type for the number
     type ArrayType;
+}
+
+#[cfg(feature="nightly")]
+unsafe impl<T, U: Unsigned> ArrayLength<T> for U {
+    default type ArrayType = !;
 }
 
 unsafe impl<T> ArrayLength<T> for UTerm {

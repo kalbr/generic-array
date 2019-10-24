@@ -22,7 +22,9 @@ travis-ci = { repository = "fizyk20/generic-array" }
 name = "generic_array"
 
 [features]
+default = [ "nightly" ]
 more_lengths = []
+nightly = []
 
 [dependencies]
 typenum = "1.10"
